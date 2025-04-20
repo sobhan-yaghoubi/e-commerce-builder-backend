@@ -13,6 +13,10 @@ class StoreConfig {
     return prisma.storeConfig.findUnique({ where: { id } })
   }
 
+  async getStoreConfigByDomain(domain: StoreConfigType["domain"]) {
+    return prisma.storeConfig.findUnique({ where: { domain } })
+  }
+
   async createStoreConfig(storeConfigData: OmitStoreConfigCreateInput) {
     return prisma.storeConfig.create({ data: storeConfigData })
   }

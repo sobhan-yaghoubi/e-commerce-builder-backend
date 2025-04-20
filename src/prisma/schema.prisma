@@ -11,7 +11,7 @@ generator client {
 model StoreConfig {
   id        String      @id @default(uuid())
   theme     Theme
-  domain    String
+  domain    String      @unique
   languages  String[]
   default_language String
   updatedAt DateTime @updatedAt
