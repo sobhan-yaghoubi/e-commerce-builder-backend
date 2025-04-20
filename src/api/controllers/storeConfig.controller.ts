@@ -1,9 +1,9 @@
 import { storeConfigService } from "@/src/services/storeConfig.service"
 import { ResponseClient } from "@/src/utils/response"
-import { Request, Response } from "express"
+import { Request, RequestHandler, Response } from "express"
 
 class StoreConfigController {
-  async getAllStoresConfig(_: Request, res: Response) {
+  getAllStoresConfig: RequestHandler = async (_: Request, res: Response) => {
     try {
       const storesConfig = await storeConfigService.getAllStoresConfig()
       return ResponseClient.sendSuccess({ res, data: storesConfig })
@@ -16,7 +16,10 @@ class StoreConfigController {
     }
   }
 
-  async getStoreConfigByDomain(req: Request, res: Response) {
+  getStoreConfigByDomain: RequestHandler = async (
+    req: Request,
+    res: Response
+  ) => {
     try {
       const { domain } = req.params
       const storeConfig = await storeConfigService.getStoreConfigByDomain(
@@ -40,7 +43,7 @@ class StoreConfigController {
     }
   }
 
-  async createStoreConfig(req: Request, res: Response) {
+  createStoreConfig: RequestHandler = async (req: Request, res: Response) => {
     try {
       const storeConfigData = req.body
       const newStoreConfig = await storeConfigService.createStoreConfig(
@@ -56,7 +59,7 @@ class StoreConfigController {
     }
   }
 
-  async updateStoreConfig(req: Request, res: Response) {
+  updateStoreConfig: RequestHandler = async (req: Request, res: Response) => {
     try {
       const { id } = req.params
       const storeConfigData = req.body
@@ -81,7 +84,7 @@ class StoreConfigController {
     }
   }
 
-  async deleteStoreConfig(req: Request, res: Response) {
+  deleteStoreConfig: RequestHandler = async (req: Request, res: Response) => {
     try {
       const { id } = req.params
       const deleted = await storeConfigService.deleteStoreConfig(id)
@@ -102,3 +105,5 @@ class StoreConfigController {
     }
   }
 }
+
+export const storeConfigController = new StoreConfigController()

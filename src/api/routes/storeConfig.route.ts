@@ -1,0 +1,25 @@
+import { Router } from "express"
+import { storeConfigController } from "@src/api/controllers/storeConfig.controller"
+import { validate } from "@src/api/middleware/validate"
+import {
+  CreateStoreConfigSchema,
+  UpdateStoreConfigSchema,
+} from "@src/api/validators/storeConfig.validator"
+
+const router = Router()
+
+router.get("/", storeConfigController.getAllStoresConfig)
+router.get("/domain/:domain", storeConfigController.getStoreConfigByDomain)
+router.post(
+  "/",
+  validate(CreateStoreConfigSchema),
+  storeConfigController.createStoreConfig
+)
+router.put(
+  "/",
+  validate(UpdateStoreConfigSchema),
+  storeConfigController.updateStoreConfig
+)
+router.delete("/:id", storeConfigController.deleteStoreConfig)
+
+export default router

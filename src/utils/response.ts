@@ -10,7 +10,7 @@ class ResponseHandler {
     data: T
     status?: number
   }) {
-    return res.status(status).json({ success: true, data })
+    res.status(status).json({ success: true, data })
   }
 
   sendError({
@@ -25,7 +25,7 @@ class ResponseHandler {
     error?: any
   }) {
     logger.error(message, error)
-    return res.status(status).json({ success: false, message, error })
+    res.status(status).json({ success: false, message, error })
   }
 
   handleNotFound({
@@ -36,7 +36,7 @@ class ResponseHandler {
     message?: string
   }) {
     const notFoundStatusCode = 404
-    return res.status(notFoundStatusCode).json({ success: false, message })
+    res.status(notFoundStatusCode).json({ success: false, message })
   }
 }
 
