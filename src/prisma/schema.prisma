@@ -1,0 +1,25 @@
+datasource db {
+  provider = "sqlite" 
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output = "generated/client"
+}
+
+model StoreConfig {
+  id        String      @id @default(uuid())
+  theme     Theme
+  domain    String
+  language  String
+  default_language String
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+enum Theme {
+    BASIC
+    MIDDLE
+    ADVANCED
+}

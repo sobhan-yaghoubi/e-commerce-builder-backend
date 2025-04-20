@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsx -r tsconfig-paths/register src/index.ts",
+    "prisma:generate": "prisma generate --schema=./src/prisma/schema.prisma"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   },
   "keywords": [],
   "author": "",
@@ -13,10 +18,15 @@
   "devDependencies": {
     "@types/express": "^5.0.1",
     "@types/node": "^22.14.1",
+    "prisma": "^6.6.0",
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@prisma/client": "^6.6.0",
+    "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "tsx": "^4.19.3"
+    "uuid": "^11.1.0",
+    "winston": "^3.17.0",
+    "zod": "^3.24.3"
   }
 }

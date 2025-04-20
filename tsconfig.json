@@ -1,15 +1,21 @@
 {
   "compilerOptions": {
-    "moduleDetection": "force",
-    "module": "Preserve",
+    "target": "ES2024",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "resolveJsonModule": true,
-    "allowJs": true,
     "esModuleInterop": true,
     "isolatedModules": true,
+    "outDir": "dist",
+    "sourceMap": true,
+    "strict": true,
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@src/*": ["./src/*"],
+      "@generated-prisma-client": ["./src/prisma/generated/client"]
     }
   },
-  "include": ["**/*.ts"],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
 }
