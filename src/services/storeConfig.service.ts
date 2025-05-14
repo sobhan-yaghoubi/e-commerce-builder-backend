@@ -23,9 +23,12 @@ class StoreConfig {
 
   async updateStoreConfig(
     id: StoreConfigType["id"],
-    storeConfigData: OmitStoreConfigCreateInput
+    storeConfigData: Partial<OmitStoreConfigCreateInput>
   ) {
-    return prisma.storeConfig.update({ where: { id }, data: storeConfigData })
+    return prisma.storeConfig.update({
+      where: { id },
+      data: { ...storeConfigData },
+    })
   }
 
   async deleteStoreConfig(id: StoreConfigType["id"]) {
