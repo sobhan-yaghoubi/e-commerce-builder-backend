@@ -9,6 +9,7 @@ import {
 const router = Router()
 
 router.get("/", storeConfigController.getAllStoresConfig)
+router.get("/id/:id", storeConfigController.getStoreConfigById)
 router.get("/domain/:domain", storeConfigController.getStoreConfigByDomain)
 router.post(
   "/",
@@ -16,7 +17,7 @@ router.post(
   storeConfigController.createStoreConfig
 )
 router.put(
-  "/",
+  "/id/:id",
   validate(UpdateStoreConfigSchema),
   storeConfigController.updateStoreConfig
 )
