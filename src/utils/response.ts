@@ -1,16 +1,17 @@
 import { Response } from "express"
 import logger from "../config/logger"
 class ResponseHandler {
-  sendSuccess<T>({
+  sendSuccess<T, U extends Record<string, any>>({
     res,
     data,
     status = 200,
+    ...additionalProperties
   }: {
     res: Response
     data: T
     status?: number
-  }) {
-    res.status(status).json({ success: true, data })
+  } & U) {
+    res.status(status).json({ success: true, data, ...additionalProperties })
   }
 
   sendError({
