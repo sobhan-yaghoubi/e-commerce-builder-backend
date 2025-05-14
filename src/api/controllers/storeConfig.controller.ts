@@ -16,6 +16,26 @@ class StoreConfigController {
     }
   }
 
+  getStoreConfigById: RequestHandler = async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params
+      const storeConfig = await storeConfigService.getStoreConfigById(id)
+      if (!storeConfig)
+        return ResponseClient.handleNotFound({
+          res,
+          message: `Store config with ${id} not found`,
+        })
+
+      return ResponseClient.sendSuccess({ res, data: storeConfig })
+    } catch (error) {
+      return ResponseClient.sendError({
+        res,
+        message: "Failed to get the store with id.",
+        error,
+      })
+    }
+  }
+
   getStoreConfigByDomain: RequestHandler = async (
     req: Request,
     res: Response
@@ -49,7 +69,11 @@ class StoreConfigController {
       const newStoreConfig = await storeConfigService.createStoreConfig(
         storeConfigData
       )
-      return ResponseClient.sendSuccess({ res, data: newStoreConfig })
+
+      return ResponseClient.sendSuccess({
+        res,
+        data: newStoreConfig,
+      })
     } catch (error) {
       return ResponseClient.sendError({
         res,
@@ -67,14 +91,16 @@ class StoreConfigController {
         id,
         storeConfigData
       )
-
       if (!updatedStoreConfig)
         return ResponseClient.handleNotFound({
           res,
           message: "Store config not found",
         })
 
-      return ResponseClient.sendSuccess({ res, data: updatedStoreConfig })
+      return ResponseClient.sendSuccess({
+        res,
+        data: updatedStoreConfig,
+      })
     } catch (error) {
       return ResponseClient.sendError({
         res,
