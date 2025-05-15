@@ -10,6 +10,7 @@ generator client {
 
 model StoreConfig {
   id        String      @id @default(uuid())
+  name      String
   theme     Theme
   domain    String      @unique
   languages  String[]
