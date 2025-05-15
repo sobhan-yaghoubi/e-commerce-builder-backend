@@ -130,6 +130,26 @@ class StoreConfigController {
       })
     }
   }
+
+  deleteAllStoresConfig = async (_: Request, res: Response) => {
+    try {
+      const deleted = await storeConfigService.deleteAllStoresConfig()
+
+      if (!deleted)
+        return ResponseClient.sendError({
+          res,
+          message: "Could not delete all stores config",
+        })
+
+      return ResponseClient.sendSuccess({ res, data: deleted })
+    } catch (error) {
+      return ResponseClient.sendError({
+        res,
+        message: "Failed to delete the stores config",
+        error,
+      })
+    }
+  }
 }
 
 export const storeConfigController = new StoreConfigController()

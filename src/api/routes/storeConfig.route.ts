@@ -11,16 +11,20 @@ const router = Router()
 router.get("/", storeConfigController.getAllStoresConfig)
 router.get("/id/:id", storeConfigController.getStoreConfigById)
 router.get("/domain/:domain", storeConfigController.getStoreConfigByDomain)
+
 router.post(
   "/",
   validate(CreateStoreConfigSchema),
   storeConfigController.createStoreConfig
 )
+
 router.put(
   "/id/:id",
   validate(UpdateStoreConfigSchema),
   storeConfigController.updateStoreConfig
 )
+
+router.delete("/", storeConfigController.deleteAllStoresConfig)
 router.delete("/:id", storeConfigController.deleteStoreConfig)
 
 export default router

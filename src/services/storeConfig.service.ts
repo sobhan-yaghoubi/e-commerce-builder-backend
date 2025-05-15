@@ -35,6 +35,12 @@ class StoreConfig {
     const storeConfigResult = await prisma.storeConfig.delete({ where: { id } })
     return !!storeConfigResult
   }
+
+  async deleteAllStoresConfig() {
+    const storeConfigResult = await prisma.storeConfig.deleteMany()
+
+    return !!storeConfigResult
+  }
 }
 
 export const storeConfigService = new StoreConfig()
