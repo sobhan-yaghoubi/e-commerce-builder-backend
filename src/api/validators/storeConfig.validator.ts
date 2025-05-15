@@ -3,6 +3,7 @@ import { ThemeEnum } from "./enums.validator"
 
 export const BaseStoreConfigSchema = z.object({
   theme: ThemeEnum,
+  name: z.string().min(1, "name is required"),
   domain: z.string().min(1, "domain is required"),
   languages: z.array(z.string().min(2)),
   default_language: z.string().min(2, "default_language is required"),
