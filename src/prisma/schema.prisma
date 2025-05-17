@@ -9,15 +9,15 @@ generator client {
 }
 
 model StoreConfig {
-  id               String   @id @default(uuid())
-  name             String
-  theme            Theme
-  domain           String   @unique
-  languages        String[]
-  default_language String
-  updatedAt        DateTime @updatedAt
-  createdAt        DateTime @default(now())
-  Store            Store[]
+  id              String   @id @default(uuid())
+  name            String
+  theme           Theme
+  domain          String   @unique
+  languages       String[]
+  defaultLanguage String
+  updatedAt       DateTime @updatedAt
+  createdAt       DateTime @default(now())
+  Store           Store[]
 }
 
 model Store {
@@ -26,17 +26,17 @@ model Store {
   products Product[]
   content  String
 
-  store_config    StoreConfig @relation(fields: [store_config_id], references: [id])
-  store_config_id String
+  storeConfig   StoreConfig @relation(fields: [storeConfigId], references: [id])
+  storeConfigId String
 }
 
 model Product {
-  id    String  @id @default(uuid())
+  id    String @id @default(uuid())
   name  String
-  price Decimal
+  price String
 
-  store    Store  @relation(fields: [store_id], references: [id])
-  store_id String
+  store   Store  @relation(fields: [storeId], references: [id])
+  storeId String
 }
 
 enum Theme {
