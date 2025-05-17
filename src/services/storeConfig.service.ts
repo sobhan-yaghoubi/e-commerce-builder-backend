@@ -1,11 +1,11 @@
 import prisma from "@src/config/database"
 import type {
   OmitStoreConfigCreateInput,
-  StoreConfig as StoreConfigType,
+  StoreConfigType,
 } from "@src/types/storeConfig.type"
 
 class StoreConfig {
-  async getAllStoresConfig(): Promise<StoreConfigType[]> {
+  async getAllStoresConfig() {
     return prisma.storeConfig.findMany()
   }
 

@@ -1,9 +1,12 @@
-import { StoreConfig, Prisma } from "@generated-prisma-client"
+import {
+  StoreConfig as StoreConfigType,
+  Prisma,
+} from "@generated-prisma-client"
 
 export const StoreConfigSelect: Prisma.StoreConfigSelect = {
   theme: true,
   domain: true,
-  language: true,
+  languages: true,
   default_language: true,
 }
 
@@ -14,4 +17,4 @@ export type OmitStoreConfigCreateInput = Omit<
   "id" | "createdAt" | "updatedAt"
 >
 
-export type { StoreConfig }
+export type { StoreConfigType }
