@@ -6,14 +6,14 @@ export const BaseStoreConfigSchema = z.object({
   name: z.string().min(1, "name is required"),
   domain: z.string().min(1, "domain is required"),
   languages: z.array(z.string().min(2)),
-  default_language: z.string().min(2, "default_language is required"),
+  defaultLanguage: z.string().min(2, "defaultLanguage is required"),
 })
 
 export const CreateStoreConfigSchema = BaseStoreConfigSchema.refine(
-  (data) => data.languages.includes(data.default_language),
+  (data) => data.languages.includes(data.defaultLanguage),
   {
-    message: "default_language must be one of the value of languages filed",
-    path: ["default_language"],
+    message: "defaultLanguage must be one of the value of languages filed",
+    path: ["defaultLanguage"],
   }
 )
 

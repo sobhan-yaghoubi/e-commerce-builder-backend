@@ -7,7 +7,7 @@ export const StoreConfigSelect: Prisma.StoreConfigSelect = {
   theme: true,
   domain: true,
   languages: true,
-  default_language: true,
+  defaultLanguage: true,
 }
 
 export type StoreConfigCreateInput = Prisma.StoreConfigCreateInput
