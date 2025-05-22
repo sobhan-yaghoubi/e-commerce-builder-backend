@@ -7,14 +7,17 @@ class Store {
     return prisma.store.findMany()
   }
 
-  async getStoresByStoreConfigId(storeConfigId: StoreConfigType["id"]) {
+  async getStoresByStoreConfigId(
+    storeConfigId: StoreConfigType["id"],
+    locale?: string
+  ) {
     return prisma.store.findMany({
-      where: { storeConfigId: storeConfigId },
+      where: { storeConfigId: storeConfigId, language: locale },
     })
   }
 
-  async getStoreById(id: StoreType["id"]) {
-    return prisma.store.findUnique({ where: { id } })
+  async getStoreById(id: StoreType["id"], locale?: string) {
+    return prisma.store.findUnique({ where: { id, language: locale } })
   }
 }
 
