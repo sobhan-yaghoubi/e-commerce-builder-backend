@@ -21,22 +21,20 @@ model StoreConfig {
 }
 
 model Store {
-  id       String    @id @default(uuid())
-  language String
-  products Product[]
-  content  String
-
-  storeConfig   StoreConfig @relation(fields: [storeConfigId], references: [id])
+  id            String      @id @default(uuid())
+  language      String
+  content       String
   storeConfigId String
+  products      Product[]
+  storeConfig   StoreConfig @relation(fields: [storeConfigId], references: [id])
 }
 
 model Product {
-  id    String @id @default(uuid())
-  name  String
-  price String
-
-  store   Store  @relation(fields: [storeId], references: [id])
+  id      String @id @default(uuid())
+  name    String
+  price   String
   storeId String
+  store   Store  @relation(fields: [storeId], references: [id])
 }
 
 enum Theme {

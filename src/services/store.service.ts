@@ -9,7 +9,7 @@ class Store {
 
   async getStoresByStoreConfigId(storeConfigId: StoreConfigType["id"]) {
     return prisma.store.findMany({
-      where: { store_config_id: storeConfigId },
+      where: { storeConfigId: storeConfigId },
     })
   }
 
