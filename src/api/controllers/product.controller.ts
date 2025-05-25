@@ -51,10 +51,13 @@ class ProductController {
     }
   }
 
-  async getProductsByStoreId(req: Request, res: Response) {
+  async getProductsByConfigAndLocale(req: Request, res: Response) {
     try {
-      const { storeId } = req.params
-      const products = await productService.getProductsByStoreId({ storeId })
+      const { storeConfigId, locale } = req.params
+      const products = await productService.getProductsByConfigAndLocale({
+        storeConfigId,
+        locale,
+      })
 
       return ResponseClient.sendSuccess({ res, data: products })
     } catch (error) {

@@ -5,6 +5,9 @@ const router = Router()
 
 router.get("/", productController.getAllProducts)
 router.get("/:id", productController.getProductById)
-router.get("/by-store-id/:storeId", productController.getProductsByStoreId)
+router.get(
+  "/:storeConfigId/:locale",
+  productController.getProductsByConfigAndLocale
+)
 
 export default router

@@ -24,6 +24,7 @@ class StoreController {
         storeConfigId,
         locale
       )
+
       if (!store)
         return ResponseClient.handleNotFound({
           res,

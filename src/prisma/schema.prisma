@@ -17,7 +17,7 @@ model StoreConfig {
   defaultLanguage String
   updatedAt       DateTime @updatedAt
   createdAt       DateTime @default(now())
-  Store           Store[]
+  stores          Store[]
 }
 
 model Store {

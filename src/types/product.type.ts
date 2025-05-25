@@ -1,8 +1,9 @@
-import { Product as ProductType } from "@generated-prisma-client"
+import { Product as ProductType, StoreConfig } from "@generated-prisma-client"
 import { StoreType } from "./store.type"
 
-export type getProductsByStoreIdProps = {
-  storeId: StoreType["id"]
+export type getProductsByConfigAndLocaleProps = {
+  storeConfigId: StoreConfig["id"]
+  locale: StoreType["language"]
 }
 
 export type { ProductType }

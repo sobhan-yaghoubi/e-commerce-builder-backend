@@ -1,5 +1,8 @@
 import prisma from "@src/config/database"
-import { getProductsByStoreIdProps, ProductType } from "../types/product.type"
+import {
+  getProductsByConfigAndLocaleProps,
+  ProductType,
+} from "../types/product.type"
 import { StoreType } from "../types/store.type"
 import { StoreConfigType } from "../types/storeConfig.type"
 
@@ -21,8 +24,13 @@ class ProductService {
     })
   }
 
-  async getProductsByStoreId({ storeId }: getProductsByStoreIdProps) {
-    return prisma.product.findMany({ where: { storeId } })
+  async getProductsByConfigAndLocale({
+    storeConfigId,
+    locale,
+  }: getProductsByConfigAndLocaleProps) {
+    return prisma.product.findMany({
+      where: { store: { storeConfigId, language: locale } },
+    })
   }
 }
 

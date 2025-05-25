@@ -6,15 +6,21 @@ import type {
 
 class StoreConfig {
   async getAllStoresConfig() {
-    return prisma.storeConfig.findMany()
+    return prisma.storeConfig.findMany({ include: { stores: true } })
   }
 
   async getStoreConfigById(id: StoreConfigType["id"]) {
-    return prisma.storeConfig.findUnique({ where: { id } })
+    return prisma.storeConfig.findUnique({
+      where: { id },
+      include: { stores: true },
+    })
   }
 
   async getStoreConfigByDomain(domain: StoreConfigType["domain"]) {
-    return prisma.storeConfig.findUnique({ where: { domain } })
+    return prisma.storeConfig.findUnique({
+      where: { domain },
+      include: { stores: true },
+    })
   }
 
   async createStoreConfig(storeConfigData: OmitStoreConfigCreateInput) {
