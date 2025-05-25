@@ -16,12 +16,14 @@ class StoreController {
     }
   }
 
-  getStoresByStoreConfigId = async (req: Request, res: Response) => {
+  getStoreByConfigAndLocale = async (req: Request, res: Response) => {
     try {
-      const { storeConfigId } = req.params
-      const acceptLanguage = req.headers["accept-language"]
+      const { storeConfigId, locale } = req.params
 
-      const store = await StoreService.getStoresByStoreConfigId(storeConfigId,acceptLanguage)
+      const store = await StoreService.getStoreByConfigAndLocale(
+        storeConfigId,
+        locale
+      )
       if (!store)
         return ResponseClient.handleNotFound({
           res,

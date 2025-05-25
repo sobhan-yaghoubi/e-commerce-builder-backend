@@ -5,8 +5,8 @@ const router = Router()
 
 router.get("/", storeController.getAllStores)
 router.get(
-  "/by-store-config/:storeConfigId",
-  storeController.getStoresByStoreConfigId
+  "/:storeConfigId/stores/:locale",
+  storeController.getStoreByConfigAndLocale
 )
 router.get("/:id", storeController.getStoreById)
 

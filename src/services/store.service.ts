@@ -7,11 +7,11 @@ class Store {
     return prisma.store.findMany()
   }
 
-  async getStoresByStoreConfigId(
+  async getStoreByConfigAndLocale(
     storeConfigId: StoreConfigType["id"],
     locale?: string
   ) {
-    return prisma.store.findMany({
+    return prisma.store.findFirst({
       where: { storeConfigId: storeConfigId, language: locale },
     })
   }
