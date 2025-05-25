@@ -19,7 +19,9 @@ class ProductController {
 
   async getProductById(req: Request, res: Response) {
     try {
-      const { id, tenantId, locale: language } = req.params
+      const { id } = req.params
+      const tenantId = req.headers["x-tenant-id"] as string
+      const language = req.headers["x-locale"] as string
 
       if (!tenantId || !language)
         return ResponseClient.sendError({
