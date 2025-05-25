@@ -19,12 +19,13 @@ class ProductController {
 
   async getProductById(req: Request, res: Response) {
     try {
-      const { id } = req.params
-      const language = req.headers["x-language"]
-      const tenantId = req.headers["x-tenant-id"]
+      const { id, tenantId, locale: language } = req.params
 
-      if (typeof language !== "string" || typeof tenantId !== "string")
-        return ResponseClient.sendError({ res, message: "Required" })
+      if (!tenantId || !language)
+        return ResponseClient.sendError({
+          res,
+          message: `Required`,
+        })
 
       const product = await productService.getProductById(
         id,
